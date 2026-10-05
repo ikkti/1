@@ -12,7 +12,7 @@ RUN mkdir -p /opt/united-seed \
     && cp /var/www/html/users.json /opt/united-seed/users.json \
     && cp /var/www/html/posts.json /opt/united-seed/posts.json \
     && cp -a /var/www/html/storage /opt/united-seed/storage \
-    && cp -a /var/www/html/uploads /opt/united-seed/uploads
+    && mkdir -p /var/www/html/uploads && cp -a /var/www/html/uploads /opt/united-seed/uploads
 
 COPY fly-entrypoint.sh /usr/local/bin/fly-entrypoint.sh
 RUN chmod +x /usr/local/bin/fly-entrypoint.sh \

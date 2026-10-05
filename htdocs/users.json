@@ -1,0 +1,24 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "i.i.v.x",
+            "display_name": "د. مريم  الياسري",
+            "email": "admin@krar.top",
+            "password": "$2y$10$lNgTHWnzKKHwW1RgCWvM4euDB6fWo2H3TL.duFxYYEqaxrkovDmNq",
+            "verified": true,
+            "email_verified": true,
+            "verification_requested": false,
+            "verification_method": "admin",
+            "bio": "المسؤولة الرسمية على مدونة كروري فالفيردي 🌟",
+            "avatar": "https://krar.top/uploads/1788952991_5197e356.png",
+            "role": "admin",
+            "created_at": "2026-05-27 10:13:52",
+            "updated_at": "2026-09-09 14:23:25",
+            "verified_at": "",
+            "email_verified_at": "",
+            "wallet_phone": null
+        }
+    ],
+    "next_username": 15
+}

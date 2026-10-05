@@ -1,0 +1,5 @@
+.git
+.gitignore
+Dockerfile
+fly.toml
+README_FLY.md

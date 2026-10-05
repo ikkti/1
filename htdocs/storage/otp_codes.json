@@ -1,0 +1,12 @@
+[
+    {
+        "email": "support@kruri-valverde.com",
+        "purpose": "register",
+        "code_hash": "$2y$10$dDhWZu5P7Ehl.j4uorpTtOGQp\/zdKIS9RbffahjwAXvuScu5hjCLm",
+        "created_at": 1785427840,
+        "expires_at": 1785428440,
+        "attempts": 0,
+        "used": true,
+        "meta": []
+    }
+]

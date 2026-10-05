@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تجربة خادم التحقق OTP</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            background: linear-gradient(180deg,#f8fbff,#eef4ff);
+            color: #0f172a;
+            font-family: 'Cairo', 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container{
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            max-width: 480px;
+            border: 1px solid #d6deea;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1{
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle{
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+        .step{
+            background: linear-gradient(180deg,#f8fbff,#eef4ff);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid #d6deea;
+        }
+        .step-title{
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .step-number{
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        input{
+            width: 100%;
+            padding: 14px 18px;
+            background: #ffffff;
+            border: 1px solid #d6deea;
+            border-radius: 14px;
+            color: #0f172a;
+            font-family: inherit;
+            font-size: 15px;
+            margin-bottom: 12px;
+            transition: 0.2s;
+            outline: none;
+        }
+        input:focus{
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+        }
+        input:disabled{
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        button{
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover:not(:disabled){
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(99,102,241,0.3);
+        }
+        button:disabled{
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .otp-inputs{
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .otp-inputs input{
+            width: 50px;
+            height: 60px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            padding: 0;
+        }
+        .status{
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-top: 12px;
+            text-align: center;
+            font-size: 14px;
+            display: none;
+        }
+        .status.success{
+            background: rgba(16,185,129,0.1);
+            border: 1px solid rgba(16,185,129,0.3);
+            color: #10b981;
+            display: block;
+        }
+        .status.error{
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: #ef4444;
+            display: block;
+        }
+        .status.info{
+            background: rgba(99,102,241,0.1);
+            border: 1px solid rgba(99,102,241,0.3);
+            color: #818cf8;
+            display: block;
+        }
+        .timer{
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        .result-box{
+            background: linear-gradient(180deg,#f8fbff,#eef4ff);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            border: 1px solid #d6deea;
+        }
+        .result-title{
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .json-view{
+            background: #eef4ff;
+            border-radius: 12px;
+            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #22d3ee;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .divider{
+            text-align: center;
+            color: #475569;
+            margin: 24px 0;
+            font-size: 13px;
+        }
+        .divider::before, .divider::after{
+            content: ' ─── ';
+        }
+        .reset-btn{
+            background: transparent;
+            border: 1px solid #d6deea;
+            color: #64748b;
+            margin-top: 12px;
+        }
+        .reset-btn:hover:not(:disabled){
+            background: #ffffff;
+            box-shadow: none;
+        }
+    body{background:radial-gradient(circle at top,#350507,#080808 72%)!important;color:#f5f5f5}.card,.container,.verification-card{background:#111!important;border-color:#5d1018!important;box-shadow:0 24px 70px rgba(0,0,0,.5)!important}input,button{background:#090909!important;color:#fff!important;border-color:#5d1018!important}button{background:linear-gradient(135deg,#5d000b,#d1111c)!important}.otp-box:focus{border-color:#ef233c!important}</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🧪 تجربة خادم OTP</h1>
+    <p class="subtitle">اختبار التحقق عبر البريد الإلكتروني</p>
+
+    <!-- الخطوة 1: إدخال البريد -->
+    <div class="step" id="step1">
+        <div class="step-title">
+            <span class="step-number">1</span>
+            أدخل بريدك الإلكتروني
+        </div>
+        <input type="email" id="emailInput" placeholder="example@domain.com" dir="ltr">
+        <button onclick="sendOTP()" id="sendBtn">
+            📧 إرسال رمز التحقق
+        </button>
+        <div class="status" id="sendStatus"></div>
+    </div>
+
+    <!-- الخطوة 2: إدخال الرمز -->
+    <div class="step" id="step2" style="display:none;">
+        <div class="step-title">
+            <span class="step-number">2</span>
+            أدخل رمز التحقق
+        </div>
+        <div class="otp-inputs" id="otpContainer">
+            <input type="text" maxlength="1" class="otp-box" oninput="handleOTPInput(this, 0)">
+            <input type="text" maxlength="1" class="otp-box" oninput="handleOTPInput(this, 1)">
+            <input type="text" maxlength="1" class="otp-box" oninput="handleOTPInput(this, 2)">
+            <input type="text" maxlength="1" class="otp-box" oninput="handleOTPInput(this, 3)">
+        </div>
+        <button onclick="verifyOTP()" id="verifyBtn">
+            ✅ تحقق من الرمز
+        </button>
+        <div class="timer" id="timerDisplay"></div>
+        <div class="status" id="verifyStatus"></div>
+    </div>
+
+    <!-- نتيجة العملية -->
+    <div class="result-box" id="resultBox" style="display:none;">
+        <div class="result-title">
+            <span id="resultIcon">📋</span>
+            <span>نتيجة آخر عملية</span>
+        </div>
+        <div class="json-view" id="resultJson">{}</div>
+    </div>
+
+    <div class="divider">أو</div>
+
+    <button class="reset-btn" onclick="resetAll()">
+        🔄 إعادة تعيين وبدء تجربة جديدة
+    </button>
+</div>
+
+<script>
+// المتغيرات العامة
+let currentEmail = '';
+let timerInterval = null;
+let timeLeft = 600; // 10 دقائق
+
+// الحصول على عناصر OTP الـ 6
+const otpBoxes = document.querySelectorAll('.otp-box');
+
+// معالجة إدخال OTP (نقلة تلقائية للمربع التالي)
+function handleOTPInput(input, index) {
+    // السماح بالأرقام فقط
+    input.value = input.value.replace(/[^0-9]/g, '');
+    
+    if (input.value.length === 1 && index < 5) {
+        // الانتقال للمربع التالي
+        otpBoxes[index + 1].focus();
+    }
+    
+    // دعم اللصق
+    if (input.value.length > 1) {
+        const pasted = input.value.replace(/[^0-9]/g, '').substring(0, 6);
+        for (let i = 0; i < 6; i++) {
+            otpBoxes[i].value = pasted[i] || '';
+        }
+        if (pasted.length === 4) {
+            otpBoxes[5].focus();
+        }
+    }
+}
+
+// دعم Backspace للرجوع
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Backspace') {
+        for (let i = 5; i >= 1; i--) {
+            if (document.activeElement === otpBoxes[i] && otpBoxes[i].value === '') {
+                otpBoxes[i - 1].focus();
+                break;
+            }
+        }
+    }
+});
+
+// جمع رمز OTP من المربعات
+function getOTPValue() {
+    let otp = '';
+    otpBoxes.forEach(box => { otp += box.value; });
+    return otp;
+}
+
+// مسح مربعات OTP
+function clearOTPBoxes() {
+    otpBoxes.forEach(box => { box.value = ''; });
+    otpBoxes[0].focus();
+}
+
+// بدء المؤقت
+function startTimer() {
+    timeLeft = 600;
+    updateTimerDisplay();
+    
+    if (timerInterval) clearInterval(timerInterval);
+    
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            document.getElementById('timerDisplay').innerHTML = '⏰ انتهت صلاحية الرمز - <a onclick="sendOTP()" style="color:#818cf8;cursor:pointer;">إرسال رمز جديد</a>';
+        }
+    }, 1000);
+}
+
+// تحديث عرض المؤقت
+function updateTimerDisplay() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    document.getElementById('timerDisplay').innerHTML = 
+        `⏱️ متبقي: ${minutes}:${seconds.toString().padStart(2, '0')} دقيقة`;
+}
+
+// عرض النتيجة
+function showResult(success, data) {
+    const box = document.getElementById('resultBox');
+    const icon = document.getElementById('resultIcon');
+    const json = document.getElementById('resultJson');
+    
+    box.style.display = 'block';
+    icon.textContent = success ? '✅' : '❌';
+    json.textContent = JSON.stringify(data, null, 2);
+}
+
+// عرض حالة
+function showStatus(elementId, message, type) {
+    const el = document.getElementById(elementId);
+    el.className = 'status ' + type;
+    el.textContent = message;
+}
+
+// إرسال رمز التحقق
+async function sendOTP() {
+    const email = document.getElementById('emailInput').value.trim();
+    
+    if (!email || !email.includes('@')) {
+        showStatus('sendStatus', '❌ يرجى إدخال بريد إلكتروني صالح', 'error');
+        return;
+    }
+    
+    currentEmail = email;
+    
+    // تعطيل الزر
+    const btn = document.getElementById('sendBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ جاري الإرسال...';
+    
+    showStatus('sendStatus', '📤 جاري إرسال رمز التحقق...', 'info');
+    
+    try {
+        const response = await fetch('verification.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'send', email: email })
+        });
+        
+        const data = await response.json();
+        showResult(data.success, data);
+        
+        if (data.success) {
+            showStatus('sendStatus', '✅ ' + data.message, 'success');
+            
+            // إظهار خطوة إدخال الرمز
+            document.getElementById('step2').style.display = 'block';
+            document.getElementById('emailInput').disabled = true;
+            
+            // بدء المؤقت
+            startTimer();
+            
+            // التركيز على أول مربع
+            setTimeout(() => otpBoxes[0].focus(), 300);
+            
+            btn.textContent = '🔄 إعادة إرسال الرمز';
+        } else {
+            showStatus('sendStatus', '❌ ' + (data.error || 'فشل الإرسال'), 'error');
+            btn.textContent = '📧 إرسال رمز التحقق';
+        }
+    } catch (error) {
+        showStatus('sendStatus', '❌ فشل الاتصال بالخادم', 'error');
+        showResult(false, { error: error.message });
+        btn.textContent = '📧 إرسال رمز التحقق';
+    }
+    
+    btn.disabled = false;
+}
+
+// التحقق من رمز OTP
+async function verifyOTP() {
+    const otp = getOTPValue();
+    
+    if (otp.length !== 4) {
+        showStatus('verifyStatus', '❌ يرجى إدخال رمز التحقق كاملاً (4 أرقام)', 'error');
+        return;
+    }
+    
+    const btn = document.getElementById('verifyBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ جاري التحقق...';
+    
+    showStatus('verifyStatus', '🔍 جاري التحقق من الرمز...', 'info');
+    
+    try {
+        const response = await fetch('verification.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'verify', email: currentEmail, otp: otp })
+        });
+        
+        const data = await response.json();
+        showResult(data.success, data);
+        
+        if (data.success) {
+            showStatus('verifyStatus', '🎉 ' + data.message, 'success');
+            clearInterval(timerInterval);
+            document.getElementById('timerDisplay').innerHTML = '✅ تم التحقق بنجاح';
+            
+            // تعطيل مربعات OTP
+            otpBoxes.forEach(box => { box.disabled = true; });
+            btn.textContent = '✅ تم التحقق';
+        } else {
+            showStatus('verifyStatus', '❌ ' + (data.error || 'رمز غير صحيح'), 'error');
+            clearOTPBoxes();
+            btn.textContent = '✅ تحقق من الرمز';
+            btn.disabled = false;
+        }
+    } catch (error) {
+        showStatus('verifyStatus', '❌ فشل الاتصال بالخادم', 'error');
+        showResult(false, { error: error.message });
+        btn.textContent = '✅ تحقق من الرمز';
+        btn.disabled = false;
+    }
+}
+
+// إعادة تعيين
+function resetAll() {
+    currentEmail = '';
+    if (timerInterval) clearInterval(timerInterval);
+    
+    document.getElementById('emailInput').value = '';
+    document.getElementById('emailInput').disabled = false;
+    document.getElementById('step2').style.display = 'none';
+    document.getElementById('resultBox').style.display = 'none';
+    
+    document.getElementById('sendBtn').textContent = '📧 إرسال رمز التحقق';
+    document.getElementById('sendBtn').disabled = false;
+    document.getElementById('verifyBtn').textContent = '✅ تحقق من الرمز';
+    document.getElementById('verifyBtn').disabled = false;
+    
+    document.getElementById('sendStatus').className = 'status';
+    document.getElementById('verifyStatus').className = 'status';
+    document.getElementById('timerDisplay').innerHTML = '';
+    
+    clearOTPBoxes();
+    otpBoxes.forEach(box => { box.disabled = false; });
+    
+    document.getElementById('emailInput').focus();
+}
+
+// اختبار الاتصال عند تحميل الصفحة
+window.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('verification.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'check' })
+        });
+        const data = await response.json();
+        console.log('✅ خادم verification.php متصل:', data);
+    } catch (error) {
+        console.warn('⚠️ تعذر الاتصال بـ verification.php:', error.message);
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سياسة الخصوصية - كروري فالفيردي 🌟</title>
+<style>
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.8;margin:0;padding:0}
+.container{max-width:900px;margin:40px auto;background:#fff;padding:40px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.08)}
+h1{color:#0f172a;font-size:32px;margin-bottom:5px} .subtitle{color:#64748b;margin-bottom:30px}
+h2{color:#1e40af;border-right:4px solid #3b82f6;padding-right:12px;margin-top:35px}
+.badge{display:inline-block;background:#dbeafe;color:#1e40af;padding:5px 15px;border-radius:20px;font-size:14px;margin-bottom:20px}
+.contact-box{background:#0f172a;color:#fff;padding:25px;border-radius:15px;margin-top:40px}
+.contact-box a{color:#93c5fd;text-decoration:none}
+.en{color:#475569;font-size:14px;background:#f1f5f9;padding:10px;border-radius:8px;margin-top:8px;border-left:3px solid #3b82f6}
+</style>
+<!-- FM AI Widget ULTRA - مروش ال علاوي 💙 -->
+<div id="fm-ai-widget" dir="rtl">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+#fm-ai-widget{position:fixed;bottom:20px;right:20px;z-index:99999;font-family:'Cairo',sans-serif}
+#fm-widget-btn{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;cursor:pointer;box-shadow:0 8px 24px rgba(99,102,241,.4);display:flex;align-items:center;justify-content:center;transition:.3s ease}
+#fm-widget-btn:active{transform:scale(.92)}
+#fm-widget-btn.open{background:#1a1a25 !important;border:1px solid #2a2a3a}
+#fm-chat-window{position:absolute;bottom:76px;right:0;width:372px;height:540px;background:#0f0f14;border-radius:20px;display:none;flex-direction:column;overflow:hidden;border:1px solid #23232f;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#fm-chat-window.show{display:flex;animation:fmUp .3s ease}
+@keyframes fmUp{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes fmDot{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+#fm-messages{flex:1;padding:14px;overflow-y:auto;background:#0a0a0f;display:flex;flex-direction:column;gap:10px}
+#fm-messages::-webkit-scrollbar{width:3px}
+#fm-messages::-webkit-scrollbar-thumb{background:#2a2a3a;border-radius:10px}
+.fm-bubble{padding:10px 14px;border-radius:18px;font-size:13.5px;line-height:1.6;max-width:82%;word-break:break-word;animation:fmUp .25s ease}
+.fm-user{align-self:flex-end;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-bottom-right-radius:6px}
+.fm-bot{align-self:flex-start;background:#1c1c26;color:#e8e8ed;border:1px solid #23232f;border-bottom-left-radius:6px}
+.fm-quick{padding:6px 12px;background:#1c1c26;border:1px solid #2a2a3a;color:#a0a0b0;border-radius:20px;font-size:12px;cursor:pointer;transition:.2s}
+.fm-quick:hover{background:#6366f1;color:#fff;border-color:#6366f1}
+@media(max-width:480px){#fm-chat-window{position:fixed;bottom:0;right:0;left:0;width:100%;height:82vh;border-radius:22px 22px 0 0}#fm-ai-widget{right:12px;bottom:12px}}
+</style>
+
+<button id="fm-widget-btn"><span id="fm-btn-icon" style="font-size:26px">💬</span></button>
+
+<div id="fm-chat-window">
+  <div style="padding:14px 16px;display:flex;justify-content:space-between;align-items:center;background:#12121a;border-bottom:1px solid #23232f">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="width:34px;height:34px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center">🤖</div>
+      <div>
+        <div style="color:#fff;font-weight:700;font-size:13px">كروري فالفيردي 🌟</div>
+        <div id="fm-status" style="font-size:11px;color:#22c55e">● متصل الآن</div>
+      </div>
+    </div>
+    <button onclick="fmClear()" style="background:0;border:0;color:#666;font-size:18px;cursor:pointer">🗑️</button>
+  </div>
+
+  <div id="fm-messages"></div>
+
+  <!-- مؤشر الكتابة الجديد الحلو -->
+  <div id="fm-typing" style="display:none;padding:0 14px 10px;align-items:center;gap:8px">
+    <div style="width:28px;height:28px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px">🤖</div>
+    <div style="background:#1c1c26;border:1px solid #23232f;padding:10px 14px;border-radius:16px;display:flex;align-items:center;gap:6px">
+      <span style="font-size:11px;color:#8b8b9a;margin-left:4px">كروري يكتب</span>
+      <span style="width:5px;height:5px;background:#6366f1;border-radius:50%;animation:fmDot 1s infinite"></span>
+      <span style="width:5px;height:5px;background:#8b5cf6;border-radius:50%;animation:fmDot 1s .15s infinite"></span>
+      <span style="width:5px;height:5px;background:#a78bfa;border-radius:50%;animation:fmDot 1s .3s infinite"></span>
+    </div>
+  </div>
+
+  <div id="fm-quick-wrap" style="display:flex;gap:6px;padding:8px 14px;overflow-x:auto">
+    <button class="fm-quick" onclick="fmSendQuick('شلونك؟')">شلونك؟ 👋</button>
+    <button class="fm-quick" onclick="fmSendQuick('ساعدني')">ساعدني ✨</button>
+    <button class="fm-quick" onclick="fmSendQuick('شنو الأخبار؟')">الأخبار 📰</button>
+  </div>
+
+  <div style="display:flex;gap:8px;padding:12px;background:#12121a;border-top:1px solid #23232f;align-items:center">
+    <textarea id="fm-input" placeholder="اكتب هنا..." rows="1" style="flex:1;background:#1c1c26;border:1px solid #2a2a3a;border-radius:12px;padding:11px 14px;color:#fff;outline:none;resize:none;font-family:inherit;font-size:13px;max-height:80px"></textarea>
+    <button id="fm-send" style="width:42px;height:42px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;border-radius:12px;color:#fff;cursor:pointer;font-size:16px;transition:.2s">➤</button>
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  const API_URL='https://xkvs.pythonanywhere.com/api/bot';
+  const API_KEY='FM.AI_kwW31RHj2u36aZcvh0TFkP7JDtDAhh';
+  const KEY='fm_v3';
+  let isOpen=false,loading=false,connected=true;
+  const $=id=>document.getElementById(id);
+  const btn=$('fm-widget-btn'),win=$('fm-chat-window'),msgs=$('fm-messages'),input=$('fm-input'),typing=$('fm-typing'),send=$('fm-send'),icon=$('fm-btn-icon'),status=$('fm-status');
+
+  function init(){
+    btn.onclick=toggle; send.onclick=doSend;
+    input.onkeydown=e=>{ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();doSend()} };
+    input.oninput=()=>{ input.style.height='auto'; input.style.height=Math.min(input.scrollHeight,80)+'px'; send.style.transform=input.value.trim()?'scale(1.1)':'' };
+    load();
+  }
+  function toggle(){ isOpen=!isOpen; win.classList.toggle('show',isOpen); btn.classList.toggle('open',isOpen); icon.textContent=isOpen?'✕':'💬'; if(isOpen) input.focus(); }
+
+  function bubble(text,type){
+    const d=document.createElement('div'); d.className='fm-bubble '+(type==='user'?'fm-user':'fm-bot');
+    d.innerHTML=text.replace(/\n/g,'<br>');
+    msgs.appendChild(d); msgs.scrollTo({top:msgs.scrollHeight,behavior:'smooth'});
+    localStorage.setItem(KEY,msgs.innerHTML);
+  }
+
+  async function doSend(){
+    const t=input.value.trim(); if(!t||loading) return;
+    bubble(t,'user'); input.value=''; input.style.height='auto';
+    loading=true; typing.style.display='flex'; msgs.scrollTop=msgs.scrollHeight;
+    try{
+      const r=await fetch(API_URL,{method:'POST',headers:{'Authorization':'Bearer '+API_KEY,'Content-Type':'application/json'},body:JSON.stringify({message:t})});
+      const j=await r.json(); typing.style.display='none';
+      if(r.ok&&j.reply) bubble(j.reply,'bot');
+      else bubble('❌ صار خطأ، حاول مرة ثانية','bot');
+    }catch{ typing.style.display='none'; bubble('❌ ماكو اتصال بالسيرفر','bot'); }
+    loading=false;
+  }
+
+  function load(){
+    const h=localStorage.getItem(KEY);
+    if(h) msgs.innerHTML=h; else bubble('هلا والله! 👋\nأنا كروري فالفيردي 🌟\nشنو تريد اساعدك بيه اليوم؟','bot');
+    msgs.scrollTop=msgs.scrollHeight;
+  }
+  window.fmClear=()=>{ if(confirm('تمسح المحادثة؟')){ localStorage.removeItem(KEY); msgs.innerHTML=''; bubble('تم المسح ✅ ابدي من جديد!','bot'); } };
+  window.fmSendQuick=t=>{ input.value=t; doSend(); };
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
+</script>
+</head>
+<body>
+<div class="container">
+<h1>🌟 سياسة الخصوصية | Privacy Policy</h1>
+<p class="subtitle">تطبيق كروري فالفيردي - Kruri Valverde | تطبيق المذكرات الشخصية</p>
+<div class="badge">آخر تحديث: 1 سبتمبر 2026 | Last Updated: September 1, 2026</div>
+
+<h2>1. المقدمة | Introduction</h2>
+<p>مرحباً بك في كروري فالفيردي - Kruri Valverde، تطبيق المذكرات الشخصية المصمم لمساعدتك على توثيق أفكارك ومشاعرك بشكل آمن وخاص.</p>
+<div class="en">Welcome to Kruri Valverde, a personal diary app designed to help you record your thoughts and feelings securely and privately.</div>
+
+<h2>2. البيانات التي نجمعها | Data We Collect</h2>
+<p><b>بيانات الحساب:</b> البريد الإلكتروني والاسم عند التسجيل عبر جوجل أو البريد الإلكتروني.</p>
+<p><b>محتوى المذكرات:</b> النصوص والصور والملاحظات التي تقوم بإنشائها داخل التطبيق - مشفرة ومحمية.</p>
+<p><b>بيانات الاستخدام:</b> معلومات الجهاز، نوع النظام، والسجلات التقنية لتحسين الأداء.</p>
+
+<h2>3. تسجيل الدخول عبر جوجل | Google Sign-In</h2>
+<p>يمكنك تسجيل الدخول باستخدام حسابك على Google. نحن نحصل فقط على المعلومات الأساسية مثل الاسم والبريد الإلكتروني والصورة الشخصية وفقاً لأذونات Google.</p>
+<div class="en">You may sign in using your Google account. We only access basic profile info such as name, email, and profile picture as permitted by Google's OAuth. We do not share your Google data with third parties for advertising.</div>
+
+<h2>4. تسجيل الدخول عبر البريد الإلكتروني | Email Login</h2>
+<p>عند التسجيل عبر البريد الإلكتروني، نقوم بتخزين بريدك وكلمة مرور مشفرة بشكل آمن (Hashed) لضمان حماية حسابك. يمكنك إعادة تعيين كلمة المرور عبر البريد المسجل في أي وقت.</p>
+
+<h2>5. كيف نستخدم بياناتك | How We Use Data</h2>
+<ul>
+<li>لتوفير وتشغيل خدمات التطبيق وحفظ مذكراتك بشكل آمن.</li>
+<li>لتحسين تجربة المستخدم وإصلاح الأخطاء.</li>
+<li>للتواصل معك بخصوص التحديثات أو الدعم الفني.</li>
+</ul>
+
+<h2>6. التخزين المحلي والأمان | Local Storage & Security</h2>
+<p>يتم تخزين جزء من بياناتك محلياً على جهازك لتمكين العمل دون اتصال بالإنترنت. نستخدم تشفير TLS لحماية البيانات أثناء النقل وممارسات أمنية قياسية لمنع الوصول غير المصرح به.</p>
+
+<h2>7. حقوقك | Your Rights</h2>
+<p>لديك الحق في الوصول إلى بياناتك، تصحيحها، أو طلب حذفها نهائياً. يمكنك حذف بياناتك المحلية في أي وقت من إعدادات التطبيق.</p>
+
+<h2>8. الخصوصية للأطفال</h2>
+<p>التطبيق غير مخصص للأطفال دون سن 13 سنة. لا نجمع بيانات عن الأطفال عن قصد.</p>
+
+<div class="contact-box">
+<h3 style="margin-top:0">10. اتصل بنا | Contact Us</h3>
+<p>📧 البريد الإلكتروني: <a href="mailto:info@kruri-valverde.com">info@kruri-valverde.com</a></p>
+<p>📞 الهاتف: <a href="tel:+447577351132">+44 7577 351132</a></p>
+<p>🕒 الدعم: متاح من الإثنين إلى الجمعة، 9ص - 5م بتوقيت غرينتش</p>
+<p style="font-size:13px;color:#94a3b8;margin-top:15px">If you have any questions about this Privacy Policy, please contact us using the information above.</p>
+</div>
+
+<p style="text-align:center;color:#94a3b8;margin-top:30px;font-size:13px">© 2026 Kruri Valverde - كروري فالفيردي. جميع الحقوق محفوظة | All rights reserved.<br>هذه السياسة قد يتم تحديثها من وقت لآخر. سيتم إشعارك بأي تغييرات داخل التطبيق.</p>
+</div>
+</body>
+</html>

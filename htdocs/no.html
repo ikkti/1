@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تم إلغاء العملية | SwiftPayIQ</title>
+    <!-- خط Cairo من Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --warning-color: #F59E0B;
+            --warning-hover: #D97706;
+            --bg-color: #F8FAFC;
+            --card-bg: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --swiftpay-color: #1E3A8A;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            padding: 40px 28px;
+            text-align: center;
+            position: relative;
+            border: 1px solid #F1F5F9;
+        }
+
+        /* أيقونة التنبيه والإلغاء */
+        .icon-container {
+            width: 88px;
+            height: 88px;
+            background-color: #FEF3C7;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            animation: pulse-warning 1.8s infinite;
+        }
+
+        .icon-container svg {
+            width: 48px;
+            height: 48px;
+            color: var(--warning-color);
+            animation: scaleUp 0.4s ease-out;
+        }
+
+        h1 {
+            color: var(--text-main);
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* صندوق إشعار الإلغاء */
+        .cancel-alert {
+            background-color: #FFFBEB;
+            border: 1px solid #FDE68A;
+            border-radius: 12px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #92400E;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .cancel-alert svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--warning-color);
+            flex-shrink: 0;
+        }
+
+        /* الشريك الرسمي */
+        .partner-footer {
+            margin-bottom: 24px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .partner-footer strong {
+            color: var(--swiftpay-color);
+            font-weight: 800;
+        }
+
+        /* الأزرار */
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--warning-color);
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--warning-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #F1F5F9;
+        }
+
+        /* Animations */
+        @keyframes scaleUp {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulse-warning {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.3); }
+            70% { box-shadow: 0 0 0 16px rgba(245, 158, 11, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- أيقونة التنبيه والإلغاء -->
+        <div class="icon-container">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+            </svg>
+        </div>
+
+        <!-- العناوين -->
+        <h1>تم إلغاء عملية الدفع</h1>
+        <p class="subtitle">لقد قمت بإلغاء العملية قبل إتمام عملية الدفع.</p>
+
+        <!-- تنبيه الإلغاء -->
+        <div class="cancel-alert">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+            <span>لم يتم خصم أي مبلغ من حسابك أو بطاقتك المصرفية.</span>
+        </div>
+
+        <!-- إشعار الشريك الرسمي -->
+        <div class="partner-footer">
+            <span>بوابة دفع آمنة بواسطة الشريك الرسمي</span>
+            <strong>SwiftPayIQ</strong>
+        </div>
+
+        <!-- الأزرار -->
+        <div class="actions">
+            <a href="https://krar.top" class="btn btn-primary">إعادة محاولة الدفع</a>
+            <a href="https://krar.top" class="btn btn-secondary">العودة للرئيسية</a>
+        </div>
+    </div>
+
+</body>
+</html>

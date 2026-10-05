@@ -396,6 +396,8 @@ html{background:#070707}body{background:radial-gradient(circle at 85% 0,#350507 
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
 })();
 </script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6518233825484457"
+     crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="wrap">

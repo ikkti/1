@@ -1,6 +1,6 @@
-# fly.toml app configuration file generated for app-sjebww on 2026-10-05T16:17:31Z
+# fly.toml app configuration file generated for app-sjebww on 2026-10-05T16:37:42Z
 #
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+# See https://docs.fly.io/reference/configuration for information about how to use this file.
 #
 
 app = 'app-sjebww'
@@ -11,7 +11,7 @@ primary_region = 'fra'
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = 'stop'
+  auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 1
   processes = ['app']
@@ -21,3 +21,8 @@ primary_region = 'fra'
   cpu_kind = 'shared'
   cpus = 1
   memory_mb = 512
+
+[[restart]]
+  policy = 'always'
+  processes = ['app']
+  retries = 10

@@ -20,9 +20,6 @@ primary_region = "fra"
   cpu_kind = "shared"
   cpus = 1
 
-[[mounts]]
-  source = "united_data"
-  destination = "/data"
 
 [checks]
   [checks.http]

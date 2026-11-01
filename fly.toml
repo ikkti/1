@@ -1,31 +1,36 @@
-app = "united-cyber"
-primary_region = "fra"
+# fly.toml app configuration file generated for fm-ai on 2026-11-01T19:33:24Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'fm-ai'
+primary_region = 'ams'
 
 [build]
-  dockerfile = "Dockerfile"
+  dockerfile = 'Dockerfile'
 
 [env]
-  APACHE_DOCUMENT_ROOT = "/var/www/html"
+  APACHE_DOCUMENT_ROOT = '/var/www/html'
 
 [http_service]
-  internal_port = 80
+  internal_port = 8080
   force_https = true
-  auto_stop_machines = "stop"
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 1
-  processes = ["app"]
-
-[[vm]]
-  memory = "512mb"
-  cpu_kind = "shared"
-  cpus = 1
-
+  processes = ['app']
 
 [checks]
   [checks.http]
-    type = "http"
     port = 80
-    path = "/index.php?action=check"
-    interval = "30s"
-    timeout = "5s"
-    grace_period = "15s"
+    type = 'http'
+    interval = '30s'
+    timeout = '5s'
+    grace_period = '15s'
+    path = '/index.php?action=check'
+
+[[vm]]
+  memory = '512mb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 256
